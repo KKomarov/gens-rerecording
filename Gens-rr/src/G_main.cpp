@@ -2809,20 +2809,10 @@ long PASCAL WinProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
 		
 		case WM_PAINT:
+			if (PaintsEnabled)
 			{
-				HDC         hDC;
-				PAINTSTRUCT ps;
-
-				hDC = BeginPaint(hWnd, &ps);
-
-				if(PaintsEnabled && (!Full_Screen || DialogsOpen <= 0 || GetActiveWindow()==hWnd))
-				{
-					Clear_Primary_Screen(HWnd);
-					Flip(hWnd);
-				}
-
-				EndPaint(hWnd, &ps);
-				break;
+				Clear_Primary_Screen(HWnd);
+				Flip(hWnd);
 			}
 			break;
 		
